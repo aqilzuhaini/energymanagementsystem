@@ -18,4 +18,6 @@ The temperature represents the oil engine temperature.
 - Resistors
 - Breadboard and jumper wires
 
+## Circuit Diagram
+![GROUP 6 - STRUCTURED PROGRAMMING FINAL PROJECT](https://github.com/user-attachments/assets/5d09a66f-dcd3-48c9-bd87-199d38394ade)
 
