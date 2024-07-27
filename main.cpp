@@ -1,3 +1,10 @@
+/* 
+    Course Code: MFB2012: Structured Programming and System Interfacing
+    Group Project:
+    Name: Che Wan Iqbal 'Aqil Bin Che Wan Zuhaini ID: 22009179 
+    
+    */
+
 #define LED1_PIN 11
 #define LED2_PIN 12
 #define BUTTON_PIN 3
