@@ -17,6 +17,7 @@ The temperature represents the oil engine temperature.
 - Temperature sensor
 - Resistors
 - Breadboard and jumper wires
+- Potentiometer 
 
 ## Circuit Diagram
 ![GROUP 6 - STRUCTURED PROGRAMMING FINAL PROJECT (1)](https://github.com/user-attachments/assets/c5a07f27-e895-468e-ac69-709bcff01751)
