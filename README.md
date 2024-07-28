@@ -19,7 +19,7 @@ The temperature represents the oil engine temperature.
 - Breadboard and jumper wires
 
 ## Circuit Diagram
-![GROUP 6 - STRUCTURED PROGRAMMING FINAL PROJECT](https://github.com/user-attachments/assets/5d09a66f-dcd3-48c9-bd87-199d38394ade)
+![GROUP 6 - STRUCTURED PROGRAMMING FINAL PROJECT (1)](https://github.com/user-attachments/assets/c5a07f27-e895-468e-ac69-709bcff01751)
 
 ## Code Explanation 
 Included in the main.cpp 
