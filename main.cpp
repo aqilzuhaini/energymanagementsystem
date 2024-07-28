@@ -3,7 +3,7 @@
     Group Project:
     Name: Che Wan Iqbal 'Aqil Bin Che Wan Zuhaini ID: 22009179 
     
-    */
+*/
 
 #define LED1_PIN 11
 #define LED2_PIN 12
@@ -12,6 +12,7 @@
 #define BUZZER_PIN 13
 #define PMOSFET_PIN 9  
 #define BUTTON2_PIN 2
+#define POT_PIN A1  // Potentiometer connected to A1
 
 #define NOTE_B0  31
 #define NOTE_C1  33
@@ -184,33 +185,35 @@ void loop() {
   }
   lastButtonState2 = buttonState2;  // Save the current button state
 
+  // Read the potentiometer value
+  int potValue = analogRead(POT_PIN); // Read potentiometer value (0-1023)
+  pwmValue = map(potValue, 0, 1023, 0, 255); // Map potentiometer value to PWM range (0-255)
+
+  // Control the light bulb intensity with the potentiometer
+  if (lightBulbOn) {
+    analogWrite(PMOSFET_PIN, pwmValue); // Write the PWM value to the PMOSFET gate
+  } else {
+    analogWrite(PMOSFET_PIN, 255); // Ensure the light bulb is off when lightBulbOn is false
+  }
+
   // Temperature in Celsius
   int reading = analogRead(A0); // Read temperature from temp sensor
   float voltage = reading * 5.0 / 1024.0; // Convert into voltage
   float celsius = (voltage - 0.5) * 100; // Voltage into Celsius
 
-  // If temperature is above max temperature
+  // If temperature is 110°C or above, play the Barney song
   if (celsius >= MAX_TEMP) {
-    playBarneySong();
+    tone(BUZZER_PIN, melody[noteIndex], 500); // Play current note
+    delay(500); // Duration of the note
+    noTone(BUZZER_PIN); // Stop the tone
+    noteIndex++; // Move to next note
+
+    if (noteIndex >= sizeof(melody) / sizeof(int)) {
+      noteIndex = 0; // Start over from the first note
+    }
   } else {
-    noTone(BUZZER_PIN); // Stop the tone if temperature is below maxTemp
+    noTone(BUZZER_PIN); // Stop playing the song
   }
 
-  // Print the current PWM value being used
-  Serial.print("Current PWM Value: ");
-  Serial.println(pwmValue);
-}
-
-void playBarneySong() {
-  // Play the Barney song melody
-  int noteDuration = 1000 / noteDurations[noteIndex];
-  tone(BUZZER_PIN, melody[noteIndex], noteDuration);
-  delay(noteDuration * 1.30); // Add delay between notes
-  noTone(BUZZER_PIN); // Stop the tone
-  
-  // Move to the next note
-  noteIndex++;
-  if (noteIndex >= sizeof(melody) / sizeof(melody[0])) {
-    noteIndex = 0; // Loop back to the start of the melody
-  }
+  delay(100); // A short delay to prevent bouncing and overloading
 }
